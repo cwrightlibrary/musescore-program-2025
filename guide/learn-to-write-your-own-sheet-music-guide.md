@@ -226,6 +226,108 @@ See if you can add them! Make sure to check out the [Note Input Shortcuts](#note
 
 ### Composing the piano comping
 
+Next, let's add the piano chords that go behind the melody. Before we get started, we need to make the chord names not play back.
+
+#### Disable chord names
+
+First, we need to select all of the chord names in our score. We can do this easily by right-clicking a chord (I right-clicked the first `Fm7` chord) and, if you hover over the **Select** menu item, click **Similar**.
+
+![Select Chord Names](21-select-chord-names.png)
+
+Once selected, head over to the **Properties** tab on the left side of the screen and uncheck the **Play** checkbox.
+
+![Uncheck Play](22-uncheck-play.png)
+
+Now when you play back your score, you won't hear chords; just the melody.
+
+#### Bass clef
+
+As we did before, I'm going to show you how to add the first four measures of the bass clef for the **Piano** instrument.
+
+To start with **Measure 1** of the bass clef, click the rest (-) in the first measure of the bass clef and press **[n]** to enter **Note input mode**.
+
+Once **Note input mode** is active, change the note length to a half-note **[6]** and add an F note **[f]**, we want this to be a lower F note (F2), so move it down an octave by typing **[ctrl]**/**[cmd]** + **[down arrow]**. Before adding another note, we want to add another F note on top of the first one octave higher. We can add more notes by holding **[shift]** and pressing the note name, in our case **[f]**.
+
+![Multiple Notes](23-multiple-notes.png)
+
+After that we'll add an eighth-note rest with **[4]** and **[0]**, two F notes again with an eighth-note for the length **[4]** and **[f]**, then **[shift]** + **[f]**. To end the measure, we'll add a quarter-note rest with **[5]** and **[0]**.
+
+The first measure of the bass clef for the **Piano** part should look like this:
+
+![Measure 1](24-measure-1.png)
+
+For **Measure 2**, we're going to add a half-note B♭ with **[6]** and **[b]** with another B♭ an octave higher with **[shift]** and **[b]**. We'll do the same for the second half of the second measure with **[b]** and **[shift]** + **[b]**.
+
+Here's our first two measures for the bass clef:
+
+![Measures 1 and 2](25-measure-1-2.png)
+
+For **Measure 3**, we'll start by adding an eighth-note E♭ note with an octave above with **[4]** and **[e]**, moving down an octave in this case with **[ctrl]**/**[cmd]** + **[down arrow]**, and **[shift]** + **[e]**. For the next eighth note, we'll do the same thing. Next, add a rest that's a quarter-note in length with **[5]** and **[0]**, another rest that's an eight-note in length with **[4]** and **[0]**. After that, let's add another E♭ note with an octave above it that's an eighth-note in length with **[4]** and **[e]** and **[shift]** + **[e]**; we'll end the measure with a rest that's a quarter-note in length with **[5]** and **[0]**.
+
+Our third measure should look like this:
+
+![Measure 3](26-measure-3.png)
+
+To end the bass clef section, let's add the notes for **Measure 4**. This one's easy, it's a whole-note C with an octave above it that we can add by pressing **[7]** and **[c]**, you might have to move it up an octave with **[ctrl]**/**[cmd]** + **[up arrow]**.
+
+Here are the first four measures of our bass clef:
+
+![Measures 1-4](27-measures-1-to-4.png)
+
+See if you can copy the rest of the bass clef for the song (and feel free to play it back anytime to hear how it's coming along).
+
+![Entire Bass Clef](28-entire-bass-clef.png)
+
+#### Treble clef
+
+Again, I'll show you how I add the first four measures of the treble clef for the **Piano** instrument.
+
+Starting on **Measure 1**, let's add a half-note group of these notes: F, A♭, and C. We'll do this by entering **Note input mode**, setting the note length with **[6]**, then adding an F note with **[f]**, an A♭ note with **[shift]** + **[a]**, and a C note with **[shift]** + **[c]**. Then add an eighth-note rest with **[4]** and **[0]**. Then, another group of notes: A♭, C, and E♭, an eighth-note in length by pressing **[4]** (if the selected note length isn't already an eighth-note), then **[a]**, **[shift]** + **[c]**, and **[shift]** + **[e]**. End the measure with a quarter-note rest with **[5]** and **[0]**.
+
+Here's how **Measure 1** in the treble clef for the **Piano** instrument should look:
+
+![Measure 1](29-measure-1.png)
+
+For **Measure 2**, let's start with an eighth-note rest with **[4]** and **[0]**, then the following stack of notes: A♭, D, and F that are an eighth-note in length with **[4]** (if applicable), **[a]**, **[shift]** + **[d]**, and **[shift]** + **[f]**. We want the next note to be a quarter-note length tie. We can add this by pressing **[5]** to set the length and then type **[t]** to add a tied note. Next, add another eighth-note rest with **[4]** and **[0]**. We'll add another stack the following eighth-notes: D, F, and A♭ by typing **[4]**, then **[d]**, **[shift]** + **[f]**, and **[shift]** + **[a]**. To end the measure, add another quarter-note tie with **[5]** and **[t]**.
+
+Here's the first two measures:
+
+![Measures 1 and 2](30-measure-1-and-2.png)
+
+For the next measure, **Measure 3**, we'll start by adding a quarter-note rest with **[5]** and **[0]**. After that, add a quarter-note stack of these notes: B♭, D, and G by typing **[5]** (if neccessary), then **[b]**, **[shift]** + **[d]**, and **[shift]** + **[g]**. Next, add another quarter-note rest with **[5]** and **[0]**. To end the third measure, add a quarter-note stack of these notes: G, B♭, and D by typing **[5]**, **[g]**, **[shift]** + **[b]**, and **[shift]** + **[d]**.
+
+Here's how the third measure should look at this point:
+
+![Measure 3](31-measure-3.png)
+
+Let's finish up the treble clef of the **Piano** instrument by entering notes into **Measure 4**. Start by adding a quarter-note stack of these notes: G, B♭, and E♭ with **[5]**, **[g]**, **[shift]** + **[b]**, and **[shift]** + **[e]**. Next, add an eighth-note rest with **[4]** and **[0]**. After that, add an eighth-note stack of these notes: B♭, E♭, and G by typing **[4]**, **[b]**, **[shift]** + **[e]**, and **[shift]** + **[e]**. For the next note, we'll add a quarter-note length tie by typing **[5]** and then **[t]**. To end the fourth measure, add a quarter-note stack of these notes: G, B♭, and E♭ by typing **[5]**, **[g]**, **[shift]** + **[b]**, and **[shift]** + **[e]**.
+
+Here are the first four measures of the treble clef:
+
+![Measures 1-4](32-measures-1-to-4.png)
+
+See if you can add the rest yourself! Feel free to check out the [keyboard shortcuts](#keyboard-shortcuts) and the [note input shortcuts](#note-input-shortcuts) found at the bottom of this document.
+
+![All Notes](33-all-notes.png)
+
+Now we're all finished adding the notes for our song. Next, we'll get into adding dynamics, articulation, pedals, and breaths.
+
+## 4. Dynamics and articulation
+
+Let's start by adding some dynamics to our score.
+
+### Dynamics
+
+We'll begin by clicking any note in the first measure of the treble clef for the **Piano** instrument. Once it's selected, click **Palettes** on the left side of the screen and under **Dynamics**, click the **p** icon.
+
+![Dynamics Menu](34-dynamics.png)
+
+Here's how it should look on your music sheet:
+
+![Add Dynamics](35-add-dynamics.png)
+
+## 5. Keyboard pedals and breaths
+
 ## Keyboard Shortcuts
 
 | Shortcut | Action |
@@ -257,3 +359,4 @@ See if you can add them! Make sure to check out the [Note Input Shortcuts](#note
 | **[ctrl]**/**[cmd]** + **[up arrow]** | Move note up an octave |
 | **[ctrl]**/**[cmd]** + **[down arrow]** | Move note down an octave |
 | **[s]** | Slur Note |
+| **[shift]** + **[note]** | Add another note to current |
