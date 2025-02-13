@@ -2,7 +2,47 @@
 
 June 10, 2025 (or June 17, 2025)
 
-## Description
+## Table of Contents
+
+- [Learn to Write Your Own Sheet Music](#learn-to-write-your-own-sheet-music)
+  - [Table of Contents](#table-of-contents)
+  - [Program Description](#program-description)
+  - [Overview](#overview)
+  - [0. Downloading and installing MuseScore](#0-downloading-and-installing-musescore)
+  - [1. Score properties](#1-score-properties)
+    - [Choose instruments](#choose-instruments)
+    - [Set score properties](#set-score-properties)
+  - [2. Score layout](#2-score-layout)
+    - [Change instrument names](#change-instrument-names)
+    - [Delete bass clef from Lead instrument](#delete-bass-clef-from-lead-instrument)
+    - [Set system breaks](#set-system-breaks)
+    - [Delete subtitle](#delete-subtitle)
+    - [Add rehearsal marks](#add-rehearsal-marks)
+    - [Double barlines](#double-barlines)
+  - [3. Composing music](#3-composing-music)
+    - [Adding swing](#adding-swing)
+    - [Add chord names to measures](#add-chord-names-to-measures)
+    - [Composing the melody](#composing-the-melody)
+    - [Composing the piano comping](#composing-the-piano-comping)
+      - [Disable chord names](#disable-chord-names)
+      - [Bass clef](#bass-clef)
+      - [Treble clef](#treble-clef)
+  - [4. Dynamics and articulation](#4-dynamics-and-articulation)
+    - [Dynamics](#dynamics)
+    - [Articulation](#articulation)
+  - [5. Keyboard pedals, breaths, and arpeggios](#5-keyboard-pedals-breaths-and-arpeggios)
+    - [Keyboard pedal](#keyboard-pedal)
+    - [Breath](#breath)
+    - [Arpeggios](#arpeggios)
+  - [6. Finishing up and exporting](#6-finishing-up-and-exporting)
+    - [Exporting](#exporting)
+  - [Conclusion](#conclusion)
+  - [References](#references)
+    - [Keyboard shortcuts](#keyboard-shortcuts)
+    - [Note input shortcuts](#note-input-shortcuts)
+    - [Sheet music reference](#sheet-music-reference)
+
+## Program Description
 
 Have you ever wanted to compose your own music or bring your musical ideas to life? Please join for an exciting workshop where you’ll learn to write your own sheet music using MuseScore, a powerful and user-friendly music notation software (which is completely free to use!). Whether you're a beginner or have some experience with music, this class will guide you step-by-step through the process of creating professional-quality sheet music.​
 
@@ -322,20 +362,119 @@ We'll begin by clicking any note in the first measure of the treble clef for the
 
 ![Dynamics Menu](34-dynamics.png)
 
-Here's how it should look on your music sheet:
+Here's how it should look on your music sheet (notice the small "p" underneath the **Piano** instrument's measure):
 
 ![Add Dynamics](35-add-dynamics.png)
 
-## 5. Keyboard pedals and breaths
+The next dynamic we're going to add is under the first note in the third measure of the **Piano** instrument's treble clef. This time, instead of adding the **p**, we're going to add an **f**. After that, click anywhere in the third measure of the treble clef of the **Piano** instrument that isn't a note, this will select the whole measure.
 
-## Keyboard Shortcuts
+![F Select Measure](36-f-select-measure.png)
+
+Next, under the **Dynamics** dropdown in the **Palettes** on the left, click the icon that looks like a long arrow with the point on the right **>**. And, after clicking the first note of the fourth measure in the **Piano** instrument's treble clef, click the **mp** icon under **Dynamics**.
+
+Measures 3 and 4 should look like this now:
+
+![Measures 3 and 4](37-measures-3-4.png)
+
+Next, add another **p** to the **Piano** instrument's treble clef on **Measure 9**, and an **mp** dynamic to the **Piano** instrument's treble clef on **Measure 14**. That's all we're going to add for dynamics, your sheet should look like this now:
+
+![All Dynamics](38-all-dynamics.png)
+
+### Articulation
+
+Let's add articulation to some of the notes in our sheet next. We're going to add staccato to the first two notes of the **Piano**'s bass clef on **Measure 4**. First, click the low E♭ of the first note in the measure, then, holding **[shift]**, click the next low E♭ of the second note in the measure. After that, you can either use the keyboard shortcut **[shift]** + **[s]** to add staccato to the note, or click the dot icon above the sheet music (probably under the button labeled "Parts").
+
+![Staccato Button](39-staccato-button.png)
+
+You'll see the staccato articulation underneath the notes, like this:
+
+![Add Staccato](40-add-staccato.png)
+
+Next, do the same thing for the E♭ notes on **Measure 7**. It should look like this:
+
+![Add Staccato 2](41-add-staccato-2.png)
+
+To finish with our articulation section, we're going to add the staccato articulation to every note on the **Piano** instrument's treble and bass clefs from **Measure 9** to **Measure 13**. An easy way to do this is to click anywhere in the treble clef on **Measure 9** that isn't a note (which selects the measure) and then, holding **[shift]**, click anywhere in the bass clef measure on **Measure 13** that isn't a note. This will select all of the **Piano** instrument's measures from 9 to 13. Then add the staccato. Now your sheed will look like this:
+
+![All Staccato](42-all-staccato.png)
+
+## 5. Keyboard pedals, breaths, and arpeggios
+
+### Keyboard pedal
+
+In the final section of the sheet music creation, let's add some **keyboard pedal** marks to the **Piano** instrument's treble and bass clef from **Measure 13** to **Measure 14**. To do this, following the example above, click anywhere in the **Piano** instrument's treble clef that isn't a note on **Measure 13**, then anywhere in the **Piano** instrument's bass clef that isn't a note on **Measure 14**. Now that we have the measures selected, under **Palettes** on the left, expand the **Keyboard** section. We're going to use the first one, it looks like **Led** with an asterisk looking symbol next to it:
+
+![Pedal Button](43-pedal-button.png)
+
+If you click that button, it'll add pedal marks under both clefs of the piano part, which should look like this:
+
+![Add Pedal](44-add-pedal.png)
+
+### Breath
+
+Next, let's add a **fermata** to both instrument's clefs in the final measure, **Measure 16**. First click anywhere on the **Lead** instrument's last measure, then, holding **[shift]**, click anywhere in the bass clef of the **Piano** instrument's last measure. After selecting, expand the **Breaths & Pauses** dropdown in the **Palettes** on the left (click **Add palettes** if you don't see it) and click the first icon:
+
+![Fermata Button](45-fermata-button.png)
+
+After clicking the button, you'll see the marks over and under the notes in your sheet:
+
+![Fermata](46-fermata.png)
+
+### Arpeggios
+
+Now, for our final step, let's add some **arpeggios** to some of the chords played in the **Piano** instrument. Make sure to click **Add palettes** in the **Palettes** on the left if you don't see **Arpeggios & glissandros**. After adding it, expand it and you'll see some wavy icons. We're going to be using the first one:
+
+![Arpeggio Button](47-arpeggio-button.png)
+
+Let's first add an arpeggio to **Piano** instrument's treble clef notes on **Measure 8**. First, select the measure by clicking anywhere in the treble clef that isn't a note, then click the arpeggio button. You should see an arpeggio mark next to the notes. Then click any note in the first note in the **Piano** instrument's bass clef and do the same. You should see an arpeggio mark next to the whole-note on the treble clef and an arpeggio next to the half-note on the bass clef:
+
+![Arpeggio 1](48-arpeggio-1.png)
+
+The only other arpeggio we'll add will be for every clef for every instrument on the final measure. In the same way that we selected the final measures for the fermata, click anywhere in the **Lead** instrument's final measure, then holding **[shift]** and click anywhere in the final measure of the **Piano** instrument's bass clef. With them selected, just click the arpeggio button again:
+
+![Arpeggio 2](49-arpeggio-2.png)
+
+And that's it!
+
+## 6. Finishing up and exporting
+
+If you've made it this far, you've successfully created sheet music using **MuseScore**! Great job! Your final sheet music should look like this:
+
+![Final Sheet](50-final-sheet.png)
+
+Let's quickly look at the different ways we can export our sheet music.
+
+### Exporting
+
+Before we go further, save your sheet music with **[ctrl]**/**[cmd]** + **[s]** or by going to **File** in the menu bar and clicking **Save**.
+
+After saving, click **File** in the menu bar and then click **Export** (alternatively, you can use the shortcut **[ctrl]**/**[cmd]** + **[shift]** + **[e]**). Under **Format**, you can choose between the different export options available.
+
+![Export Options](51-export-options.png)
+
+You can export the sheet music as a **PDF file**, which comes in handy for sharing online or printing, and you can export as a few different audio options, most commonly-used being the **MP3 audio**.
+
+After exporting, you can do what you need with the files!
+
+## Conclusion
+
+I hope you've learned a lot about creating sheet music using **MuseScore**! There are many other things that you can do with the software, so please experiment with it and have fun. A great way to keep learning how to use the software is to copy existing music sheets to figure out where all the buttons are. You can check out links in the [Sheet Music Reference](#sheet-music-reference) section below.
+
+Thanks so much for taking the time to learn with me today!
+
+## References
+
+### Keyboard shortcuts
 
 | Shortcut | Action |
 | --- | --- |
 | **[ctrl]**/**[cmd]** + **[k]** | Insert chord |
 | **[n]** | Toggle Note input mode |
+| **[shift]** + **[s]** | Staccato |
+| **[ctrl]**/**[cmd]** + **[s]** | Save |
+| **[ctrl]**/**[cmd]** + **[shift]** + **[e]** | Export |
 
-## Note Input Shortcuts
+### Note input shortcuts
 
 | Shortcut | Action |
 | --- | --- |
@@ -360,3 +499,12 @@ Here's how it should look on your music sheet:
 | **[ctrl]**/**[cmd]** + **[down arrow]** | Move note down an octave |
 | **[s]** | Slur Note |
 | **[shift]** + **[note]** | Add another note to current |
+
+### Sheet music reference
+
+- [Clara IMSLP](https://clara.imslp.org/)
+  - Many completely free scans of classical sheet music from nearly every classical composer in history. Probably the best resource available with a massive catalog.
+- [Free Sheet Music](https://www.freesheetmusic.net/music)
+  - Similar to **Clara IMSLP** and also completely free.
+- [Nintendo Sheet Music](https://www.ninsheetmusic.org/)
+  - Free sheet music from many video games, mostly transcribed by fans of the games. They're all rated as well, so you can see which ones may sound best.

@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>learn-to-write-your-own-sheet-music-guide.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="learn-to-write-your-own-sheet-music">Learn to Write Your Own Sheet Music</h1>
+<p>June 10, 2025 (or June 17, 2025)</p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#learn-to-write-your-own-sheet-music">Learn to Write Your Own Sheet Music</a>
+<ul>
+<li><a href="#table-of-contents">Table of Contents</a></li>
+<li><a href="#program-description">Program Description</a></li>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#0-downloading-and-installing-musescore">0. Downloading and installing MuseScore</a></li>
+<li><a href="#1-score-properties">1. Score properties</a>
+<ul>
+<li><a href="#choose-instruments">Choose instruments</a></li>
+<li><a href="#set-score-properties">Set score properties</a></li>
+</ul>
+</li>
+<li><a href="#2-score-layout">2. Score layout</a>
+<ul>
+<li><a href="#change-instrument-names">Change instrument names</a></li>
+<li><a href="#delete-bass-clef-from-lead-instrument">Delete bass clef from Lead instrument</a></li>
+<li><a href="#set-system-breaks">Set system breaks</a></li>
+<li><a href="#delete-subtitle">Delete subtitle</a></li>
+<li><a href="#add-rehearsal-marks">Add rehearsal marks</a></li>
+<li><a href="#double-barlines">Double barlines</a></li>
+</ul>
+</li>
+<li><a href="#3-composing-music">3. Composing music</a>
+<ul>
+<li><a href="#adding-swing">Adding swing</a></li>
+<li><a href="#add-chord-names-to-measures">Add chord names to measures</a></li>
+<li><a href="#composing-the-melody">Composing the melody</a></li>
+<li><a href="#composing-the-piano-comping">Composing the piano comping</a>
+<ul>
+<li><a href="#disable-chord-names">Disable chord names</a></li>
+<li><a href="#bass-clef">Bass clef</a></li>
+<li><a href="#treble-clef">Treble clef</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#4-dynamics-and-articulation">4. Dynamics and articulation</a>
+<ul>
+<li><a href="#dynamics">Dynamics</a></li>
+<li><a href="#articulation">Articulation</a></li>
+</ul>
+</li>
+<li><a href="#5-keyboard-pedals-breaths-and-arpeggios">5. Keyboard pedals, breaths, and arpeggios</a>
+<ul>
+<li><a href="#keyboard-pedal">Keyboard pedal</a></li>
+<li><a href="#breath">Breath</a></li>
+<li><a href="#arpeggios">Arpeggios</a></li>
+</ul>
+</li>
+<li><a href="#6-finishing-up-and-exporting">6. Finishing up and exporting</a>
+<ul>
+<li><a href="#exporting">Exporting</a></li>
+</ul>
+</li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#references">References</a>
+<ul>
+<li><a href="#keyboard-shortcuts">Keyboard shortcuts</a></li>
+<li><a href="#note-input-shortcuts">Note input shortcuts</a></li>
+<li><a href="#sheet-music-reference">Sheet music reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="program-description">Program Description</h2>
+<p>Have you ever wanted to compose your own music or bring your musical ideas to life? Please join for an exciting workshop where you’ll learn to write your own sheet music using MuseScore, a powerful and user-friendly music notation software (which is completely free to use!). Whether you're a beginner or have some experience with music, this class will guide you step-by-step through the process of creating professional-quality sheet music.​</p>
+<h2 id="overview">Overview</h2>
+<p>In the lesson today, we're going to go over how to use the free and open-source, cross-platform program <a href="https://musescore.org/en">MuseScore</a> to create professional quality sheet music. MuseScore is a fantastic program because it allows you to input notes through multiple methods:</p>
+<ul>
+<li>by clicking the note length and what note you want directly on the staff</li>
+<li>with shortcuts, numbers to set note lengths, letters for note names, and <strong>[ctrl]</strong>/<strong>[cmd]</strong> + <strong>[up]</strong>/<strong>[down]</strong> arrows to move the note an octave up or down</li>
+<li>and by plugging in a USB MIDI keyboard, clicking the note length, and playing the note you want to add</li>
+</ul>
+<p>It also allows you to play back the audio you've created in excellent quality; either using the default built-in sounds or downloading better sounds through their Muse Hub app.</p>
+<p>Additionally, you can format the document how you want, add articulations and dynamics, and more</p>
+<p>Let's get started!</p>
+<h2 id="0-downloading-and-installing-musescore">0. Downloading and installing MuseScore</h2>
+<p>First, visit the <a href="https://github.com/musescore/MuseScore/releases/tag/v4.4.4">releases page from the MuseScore GitHub repository</a> and, under Assets, download the file that corresponds with your operating system.</p>
+<blockquote>
+<p>For example, if you're running 64-bit Windows 10 or 11, download the file named <code>MuseScore-Studio-4.4.4.243461245-x86_64.msi</code>. If you don't have administrator privaleges on your computer, download <code>MuseScore-Studio-4.4.4.243461245-x86_64.paf.exe</code>.</p>
+<p>If you're on a Mac computer, download <code>MuseScore-Studio-4.4.4.243461245.dmg</code>.</p>
+</blockquote>
+<p>Once you've downloaded the file, just install it (or drag the app to <code>/Applications</code> on Mac) and you're all set!</p>
+<h2 id="1-score-properties">1. Score properties</h2>
+<p>After going through the welcome information, click on the <strong>Scores</strong> tab on the left-hand side of the screen and click <strong>New Score</strong> under the rectangle with a plus icon on it. This will bring up the <strong>New Score</strong> dialog box.</p>
+<p>From here, everything we do is dependent on what you want to make. However, if you want to just follow along and create the same score I'm creating, just do exactly what I do.</p>
+<h3 id="choose-instruments">Choose instruments</h3>
+<p>I'm going to get started by adding two different piano parts to the score by clicking <strong>Keyboards</strong> on the left under <strong>Family</strong>, <strong>Piano</strong> in the middle under <strong>Instruments</strong>, and pressing the arrow in the middle next to it twice. You should see two <strong>Piano</strong> parts on the right under <strong>Your Score</strong>.</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/01-new-score.png" alt="Choose Instruments"></p>
+<p>Then click next.</p>
+<h3 id="set-score-properties">Set score properties</h3>
+<p>On the next dialog, you can set the information about your score. I set the following:</p>
+<ul>
+<li><strong>Key Signature</strong>: E♭ major</li>
+<li><strong>Tempo</strong>: 95</li>
+<li><strong>Measures</strong>: 16</li>
+<li><strong>Title</strong>: Example Sheet Music</li>
+<li><strong>Composer</strong>: Christopher Wright</li>
+</ul>
+<p>After that, click <strong>Done</strong>.</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/02-score-info.png" alt="Set Score Properties"></p>
+<h2 id="2-score-layout">2. Score layout</h2>
+<p>Next, we're going to adjust the names of our instruments, what clefs are shown, the number of measures per line, and removing unneccessary information from our titles.</p>
+<h3 id="change-instrument-names">Change instrument names</h3>
+<p>The first thing we're going to do is rename our instrument tracks.</p>
+<p>On the left-hand side of the screen, click <strong>Instruments</strong>. You can adjust the instrument names by clicking the cog icon next to each instrument. Let's set the following:</p>
+<ul>
+<li><strong>Piano 1</strong>
+<ul>
+<li><strong>Name on main score</strong>: Lead</li>
+<li><strong>Abbreviated name</strong>: (Delete the text and leave empty)</li>
+</ul>
+</li>
+<li><strong>Piano 2</strong>
+<ul>
+<li><strong>Name on main score</strong>: Piano</li>
+<li><strong>Abbreviated name</strong>: (Delete the text and leave empty)</li>
+</ul>
+</li>
+</ul>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/03-instrument-names.png" alt="Change Instrument Names"></p>
+<p>The score should look like this now. It's just generally cleaner to read, as far as my tastes go.</p>
+<h3 id="delete-bass-clef-from-lead-instrument">Delete bass clef from Lead instrument</h3>
+<p>Because I'm not planning on using the bass clef for the <strong>Lead</strong> instrument, I'm going to remove it. We can do this by pressing the arrow next to <strong>Lead</strong> under in the <strong>Insruments</strong> side panel, clicking the <strong>Bass clef</strong> from the list, and pressing the trash can icon from above it.</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/04-delete-bass-clef.png" alt="Delete Bass Clef"></p>
+<p>Now you should see only the treble clef for the <strong>Lead</strong> instrument and the treble and bass clefs for the <strong>Piano</strong> instrument underneath.</p>
+<h3 id="set-system-breaks">Set system breaks</h3>
+<p>To make the notes easier to read for our final product, I want to show two measures per line. We can easily set this by going to <strong>Format</strong> in the menu bar and clicking <strong>Add/remove system breaks...</strong>. In the dialog box that appeared, change the <code>4</code> to a <code>2</code> and press <strong>OK</strong>.</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/05-system-breaks.png" alt="System Breaks"></p>
+<p>Now our score should be formatted the way we want.</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/06-measures.png" alt="Measures"></p>
+<h3 id="delete-subtitle">Delete subtitle</h3>
+<p>This is optional if you previously set the subtitle. But since my score has no subtitle, I want to remove it. We can do this by clicking on <strong>Subtitle</strong> underneath the title <strong>Example Music Sheet</strong> and hitting either the <strong>[backspace]</strong> or <strong>[delete]</strong> key.</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/07-delete-subtitle.png" alt="Delete Subtitle"></p>
+<h3 id="add-rehearsal-marks">Add rehearsal marks</h3>
+<p>Next, I want to add section names for different groups of measures. This makes it easier for people reading the score to know which sections are which. You add them by clicking the rest (-) on a measure and under the <strong>Palettes</strong>, if you expand <strong>Text</strong>, you'll see a <strong>[B1]</strong> icon called the <strong>Rehearsal Mark</strong>. Just click that and it'll automatically add the mark and move up a letter for each time we add one.</p>
+<p>On Measure 1, add the <strong>Rehearsal Mark</strong>. It should say <strong>[A]</strong> over the measure. On Measure 9, add another <strong>Rehearsal Mark</strong> and another on Measure 13. Your score should look like this now:</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/09-rehearsal-marks.png" alt="Rehearsal Marks"></p>
+<h3 id="double-barlines">Double barlines</h3>
+<p>As a final step, let's add double barlines to further show where our sections are. You can change a barline to a double barline by clicking the measure (or barline itself) and under the <strong>Palettes</strong>, expand <strong>Barlines</strong> from the list, and click the icon showing two barlines.</p>
+<p>Add double barlines to the end of Measure 8, the beginning of Measure 9, the end of Measure 12, and the beginning of Measure 13.</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/10-double-barlines.png" alt="Double Barlines"></p>
+<p>Now we're done setting up the layout of our score and we're ready for the fun part... composing our music!</p>
+<h2 id="3-composing-music">3. Composing music</h2>
+<h3 id="adding-swing">Adding swing</h3>
+<p>I want my song to have a jazzy feel to it; one easy way to get that jazz feeling is by swinging our eighth notes (essentially where you play every other note with a slight delay). I can add swing to my score by clicking the rest (dash in the middle of the staff) of the first measure. Next, under the <strong>Palettes</strong> tab on the left side of the screen, click the arrow to expand the <strong>Tempo</strong> section from the list and click <strong>Swing</strong>. Now the text <strong>Swing</strong> should show up on the first measure of your score underneath the tempo.</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/08-adding-swing.png" alt="Adding Swing"></p>
+<h3 id="add-chord-names-to-measures">Add chord names to measures</h3>
+<p>A great way to get started with sheet music is by adding <strong>Chord Names</strong> to measures. Adding chord names will display the chord name over the measure and play it back when we play our score. We'll probably turn off playback after adding them, but it's handy to have them there in case we want to hide our <strong>Piano</strong> instrument and display our score as a <strong>lead sheet</strong> (which is the melody with chord names over each measure).</p>
+<p>To get started adding chord names, click the rest (-) icon in the first measure again and press <strong>[ctrl]</strong>/<strong>[cmd]</strong> + <strong>[k]</strong>. A text cursor should appear over the measure. This is where we can type our chord. After typing our chord we can press space to move forward one quarter note. I'm going to add these chord names to the following measures:</p>
+<ul>
+<li><strong>Measure 1</strong>: Fm7
+<ul>
+<li>you can type this as <code>fm7</code> or <code>Fm7</code>, or even <code>f-7</code></li>
+</ul>
+</li>
+<li><strong>Measure 2</strong>: B♭7
+<ul>
+<li>type <code>bb7</code></li>
+</ul>
+</li>
+<li><strong>Measure 3</strong>: E♭△ (E♭ Major 7)
+<ul>
+<li>type <code>ebt</code> or <code>ebmaj7</code></li>
+</ul>
+</li>
+<li><strong>Measure 4</strong>: Cm7
+<ul>
+<li>type <code>cm7</code></li>
+</ul>
+</li>
+<li><strong>Measure 5</strong>: Fm7
+<ul>
+<li>type <code>fm7</code></li>
+</ul>
+</li>
+<li><strong>Measure 6</strong>: B♭7
+<ul>
+<li>type <code>bb7</code></li>
+</ul>
+</li>
+<li><strong>Measure 7</strong>: E♭△ (E♭ Major 7)
+<ul>
+<li>type <code>ebt</code> or <code>ebmaj7</code></li>
+</ul>
+</li>
+<li><strong>Measure 8</strong>: Cm7
+<ul>
+<li>type <code>cm7</code></li>
+</ul>
+</li>
+<li><strong>Measure 9</strong>: Fm7
+<ul>
+<li>type <code>fm7</code></li>
+</ul>
+</li>
+<li><strong>Measure 10</strong>: B♭7
+<ul>
+<li>type <code>bb7</code></li>
+</ul>
+</li>
+<li><strong>Measure 11</strong>: Gm7
+<ul>
+<li>type <code>gm7</code></li>
+</ul>
+</li>
+<li><strong>Measure 12</strong>: Cm7
+<ul>
+<li>type <code>cm7</code></li>
+</ul>
+</li>
+<li><strong>Measure 13</strong>: Fm7
+<ul>
+<li>type <code>fm7</code></li>
+</ul>
+</li>
+<li><strong>Measure 14</strong>: B♭7
+<ul>
+<li>type <code>bb7</code></li>
+</ul>
+</li>
+<li><strong>Measure 15</strong>: E♭△
+<ul>
+<li>type <code>ebt</code></li>
+</ul>
+</li>
+</ul>
+<p>Measures 1 - 4 and 5 - 8 are simple <strong>II-V-I-VI</strong> progressions. Measures 9 - 12 are a <strong>II-V-III-VI</strong> progression. And we end on a <strong>II-V-I</strong> progression for Measures 13 - 16.</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/11-add-chord-names.png" alt="Add Chord Names"></p>
+<p>After adding the chords, if you select the first measure and press the <strong>[spacebar]</strong>, you can play the chords back.</p>
+<h3 id="composing-the-melody">Composing the melody</h3>
+<p>Now let's add a melody to our <strong>Lead</strong> instrument. My preferred method of composing notes is by clicking on the rest (-) of the measure I want to start on and pressing <strong>[n]</strong> on my keyboard and using <a href="#keyboard-shortcuts">keyboard shortcuts</a> to set the note length and note name. When you press <strong>[n]</strong>, you'll enter <strong>Note input mode</strong>. You'll notice that if you hover your mouse over the staff, it'll show a blue note.</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/12-note-input-mode.png" alt="Note Input Mode"></p>
+<p>Let's start adding in some notes! I'm going to explain how I add the notes for the first four measures, after that just reference the <a href="#note-input-shortcuts">Note Input Shortcuts</a> section for more help on adding notes.</p>
+<p>On <strong>Measure 1</strong>, I'm going to start with an eighth-note rest. Make sure <strong>Note input mode</strong> is active and type <strong>[4]</strong> to change the note length we plan on inserting to eighth-note and then press <strong>[0]</strong> to insert a rest. Next, I'll add another eighth-note <strong>[4]</strong> but this time, I want the note to be an <strong>A♭</strong>; so I'll press the <strong>[a]</strong> key to add it.</p>
+<blockquote>
+<p>MuseScore automatically knows to add an A♭ note instead of an A note because it adds our notes dependent on the scale. That makes it really fast and easy to add our notes!</p>
+</blockquote>
+<p>Next, I'm going to add an eighth-note length <strong>[4]</strong> C note <strong>[c]</strong>. After that, I'll add a eighth-note length <strong>[4]</strong> E♭ note <strong>[e]</strong>. The next note I want to add is a tie note, so we're going to press a different button for that. I want the tie note to be a quarter-note in length and remain an E♭ note. I'm going to press the <strong>[5]</strong> key to change the note length to a quarter-note and the I'll press the <strong>[t]</strong> key to add an E♭ note with a tie connecting it to the last note. After that I want to end my measure with a quarter-note rest; I'll do this by hitting the <strong>[5]</strong> key and then the <strong>[0]</strong> key. Now we've got our first measure:</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/13-measure-1.png" alt="Measure 1"></p>
+<p>On <strong>Measure 2</strong>, I want every note to be an eighth-note. So, making sure <strong>Note input mode</strong> is still active, I'm going to press <strong>[4]</strong> and then I'll add the following notes: F <strong>[f]</strong>, D <strong>[d]</strong>, A♭ <strong>[a]</strong>, F <strong>[f]</strong>. For the second half of <strong>Measure 2</strong>, I want to first add another D <strong>[d]</strong> note. However, when I add it, it's a lower D note than I want to add, I want it to be an octave higher than it is currently. To move the note up an octave, immediately after adding the note, I'll press <strong>[ctrl]</strong>/<strong>[cmd]</strong> + <strong>[up arrow]</strong>. Now the D note is where I want it to be. I'll finish the rest of the measure by adding the following notes: B♭ <strong>[b]</strong>, A♭ <strong>[a]</strong>, D <strong>[d]</strong>. However, I want this last D note to be an octave lower. So, in a similar way to before, I'm going to press <strong>[ctrl]</strong>/<strong>[cmd]</strong> + <strong>[down arrow]</strong> immediately after adding the note.</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/14-measure-2.png" alt="Measure 2"></p>
+<p>Remember, you can exit <strong>Note input mode</strong> at any time if you'd like to play back what we've added. Just exit <strong>Note input mode</strong> by pressing <strong>[n]</strong> and then press the <strong>[spacebar]</strong> to play back what we've got!</p>
+<p>Before we start working on measure 3, I want to add a <strong>Grace Note</strong> to the second D note in measure 2. Grace notes have a nice sound and also contribute to the jazzy feel I'm after. To add a grace note to the note, make sure you're not in <strong>Note input mode</strong> and under <strong>Palettes</strong>, click <strong>Add palettes</strong> and select <strong>Grace notes</strong>. After the palette has been added, click on the note you want to add it to (the second D note in measure 2), expand <strong>Grace notes</strong> from the list, and click the first icon under <strong>Grace notes</strong> (<strong>Add grace note: acciaccatura</strong>).</p>
+<p>You should see the tiny grace note just before the note. By default, the note is the same as the note next to it. I want it to be a C# note. If you click the grace note, making sure you're not in <strong>Note input mode</strong>, press the <strong>[down arrow]</strong> key twice and the <strong>[up arrow]</strong> key once. Next, I want to slur it with the D note, so, while the grace note is still selected, hit the <strong>[s]</strong> key.</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/15-slur.png" alt="Slur"></p>
+<p>On <strong>Measure 3</strong>, I want to start with a quarter-note length triplet. To add this, I'll first enter <strong>Note input mode</strong> <strong>[n]</strong>, then change the length to quarter-note with <strong>[5]</strong>. Now, I can add the triplet by hitting <strong>[ctrl]</strong>/<strong>[cmd]</strong> + <strong>[3]</strong> keys. It automatically changes the note-length to an eighth-note, which is exactly what we want!</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/16-triplet.png" alt="Triplet"></p>
+<p>In the triplet, I'm going to add the following notes: E♭ <strong>[e]</strong>, G <strong>[g]</strong>, and B♭ <strong>[b]</strong>. After the triplet I'm going to add a quarter-note D with <strong>[5]</strong> and <strong>[d]</strong>, an eighth-note rest with <strong>[4]</strong> and <strong>[0]</strong>, an E♭ eighth-note with <strong>[4]</strong> and <strong>[e]</strong> and a quarter-note C to end the measure with <strong>[5]</strong> and <strong>[c]</strong>. <strong>Measure 3</strong> should look like this:</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/17-measure-3.png" alt="Measure 3"></p>
+<p>For <strong>Measure 4</strong>, I just want a half-note length high G note, which I can add by pressing <strong>[6]</strong> and <strong>[c]</strong>, moving the note an octave up if necessary with <strong>[ctrl]</strong>/<strong>[cmd]</strong> + <strong>[up arrow]</strong>. I'll end the measure with a half-note rest with <strong>[6]</strong> and <strong>[0]</strong>.</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/18-measure-4.png" alt="Measure 4"></p>
+<p>Our first four measures should look like this now:</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/19-first-four-measures.png" alt="First Four Measures"></p>
+<p>It sounds nice if you play it back!</p>
+<p>After adding the rest of the notes, my score now looks like this:</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/20-all-notes.png" alt="All Notes"></p>
+<p>See if you can add them! Make sure to check out the <a href="#note-input-shortcuts">Note Input Shortcuts</a> for reference if you get stuck.</p>
+<h3 id="composing-the-piano-comping">Composing the piano comping</h3>
+<p>Next, let's add the piano chords that go behind the melody. Before we get started, we need to make the chord names not play back.</p>
+<h4 id="disable-chord-names">Disable chord names</h4>
+<p>First, we need to select all of the chord names in our score. We can do this easily by right-clicking a chord (I right-clicked the first <code>Fm7</code> chord) and, if you hover over the <strong>Select</strong> menu item, click <strong>Similar</strong>.</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/21-select-chord-names.png" alt="Select Chord Names"></p>
+<p>Once selected, head over to the <strong>Properties</strong> tab on the left side of the screen and uncheck the <strong>Play</strong> checkbox.</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/22-uncheck-play.png" alt="Uncheck Play"></p>
+<p>Now when you play back your score, you won't hear chords; just the melody.</p>
+<h4 id="bass-clef">Bass clef</h4>
+<p>As we did before, I'm going to show you how to add the first four measures of the bass clef for the <strong>Piano</strong> instrument.</p>
+<p>To start with <strong>Measure 1</strong> of the bass clef, click the rest (-) in the first measure of the bass clef and press <strong>[n]</strong> to enter <strong>Note input mode</strong>.</p>
+<p>Once <strong>Note input mode</strong> is active, change the note length to a half-note <strong>[6]</strong> and add an F note <strong>[f]</strong>, we want this to be a lower F note (F2), so move it down an octave by typing <strong>[ctrl]</strong>/<strong>[cmd]</strong> + <strong>[down arrow]</strong>. Before adding another note, we want to add another F note on top of the first one octave higher. We can add more notes by holding <strong>[shift]</strong> and pressing the note name, in our case <strong>[f]</strong>.</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/23-multiple-notes.png" alt="Multiple Notes"></p>
+<p>After that we'll add an eighth-note rest with <strong>[4]</strong> and <strong>[0]</strong>, two F notes again with an eighth-note for the length <strong>[4]</strong> and <strong>[f]</strong>, then <strong>[shift]</strong> + <strong>[f]</strong>. To end the measure, we'll add a quarter-note rest with <strong>[5]</strong> and <strong>[0]</strong>.</p>
+<p>The first measure of the bass clef for the <strong>Piano</strong> part should look like this:</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/24-measure-1.png" alt="Measure 1"></p>
+<p>For <strong>Measure 2</strong>, we're going to add a half-note B♭ with <strong>[6]</strong> and <strong>[b]</strong> with another B♭ an octave higher with <strong>[shift]</strong> and <strong>[b]</strong>. We'll do the same for the second half of the second measure with <strong>[b]</strong> and <strong>[shift]</strong> + <strong>[b]</strong>.</p>
+<p>Here's our first two measures for the bass clef:</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/25-measure-1-2.png" alt="Measures 1 and 2"></p>
+<p>For <strong>Measure 3</strong>, we'll start by adding an eighth-note E♭ note with an octave above with <strong>[4]</strong> and <strong>[e]</strong>, moving down an octave in this case with <strong>[ctrl]</strong>/<strong>[cmd]</strong> + <strong>[down arrow]</strong>, and <strong>[shift]</strong> + <strong>[e]</strong>. For the next eighth note, we'll do the same thing. Next, add a rest that's a quarter-note in length with <strong>[5]</strong> and <strong>[0]</strong>, another rest that's an eight-note in length with <strong>[4]</strong> and <strong>[0]</strong>. After that, let's add another E♭ note with an octave above it that's an eighth-note in length with <strong>[4]</strong> and <strong>[e]</strong> and <strong>[shift]</strong> + <strong>[e]</strong>; we'll end the measure with a rest that's a quarter-note in length with <strong>[5]</strong> and <strong>[0]</strong>.</p>
+<p>Our third measure should look like this:</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/26-measure-3.png" alt="Measure 3"></p>
+<p>To end the bass clef section, let's add the notes for <strong>Measure 4</strong>. This one's easy, it's a whole-note C with an octave above it that we can add by pressing <strong>[7]</strong> and <strong>[c]</strong>, you might have to move it up an octave with <strong>[ctrl]</strong>/<strong>[cmd]</strong> + <strong>[up arrow]</strong>.</p>
+<p>Here are the first four measures of our bass clef:</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/27-measures-1-to-4.png" alt="Measures 1-4"></p>
+<p>See if you can copy the rest of the bass clef for the song (and feel free to play it back anytime to hear how it's coming along).</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/28-entire-bass-clef.png" alt="Entire Bass Clef"></p>
+<h4 id="treble-clef">Treble clef</h4>
+<p>Again, I'll show you how I add the first four measures of the treble clef for the <strong>Piano</strong> instrument.</p>
+<p>Starting on <strong>Measure 1</strong>, let's add a half-note group of these notes: F, A♭, and C. We'll do this by entering <strong>Note input mode</strong>, setting the note length with <strong>[6]</strong>, then adding an F note with <strong>[f]</strong>, an A♭ note with <strong>[shift]</strong> + <strong>[a]</strong>, and a C note with <strong>[shift]</strong> + <strong>[c]</strong>. Then add an eighth-note rest with <strong>[4]</strong> and <strong>[0]</strong>. Then, another group of notes: A♭, C, and E♭, an eighth-note in length by pressing <strong>[4]</strong> (if the selected note length isn't already an eighth-note), then <strong>[a]</strong>, <strong>[shift]</strong> + <strong>[c]</strong>, and <strong>[shift]</strong> + <strong>[e]</strong>. End the measure with a quarter-note rest with <strong>[5]</strong> and <strong>[0]</strong>.</p>
+<p>Here's how <strong>Measure 1</strong> in the treble clef for the <strong>Piano</strong> instrument should look:</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/29-measure-1.png" alt="Measure 1"></p>
+<p>For <strong>Measure 2</strong>, let's start with an eighth-note rest with <strong>[4]</strong> and <strong>[0]</strong>, then the following stack of notes: A♭, D, and F that are an eighth-note in length with <strong>[4]</strong> (if applicable), <strong>[a]</strong>, <strong>[shift]</strong> + <strong>[d]</strong>, and <strong>[shift]</strong> + <strong>[f]</strong>. We want the next note to be a quarter-note length tie. We can add this by pressing <strong>[5]</strong> to set the length and then type <strong>[t]</strong> to add a tied note. Next, add another eighth-note rest with <strong>[4]</strong> and <strong>[0]</strong>. We'll add another stack the following eighth-notes: D, F, and A♭ by typing <strong>[4]</strong>, then <strong>[d]</strong>, <strong>[shift]</strong> + <strong>[f]</strong>, and <strong>[shift]</strong> + <strong>[a]</strong>. To end the measure, add another quarter-note tie with <strong>[5]</strong> and <strong>[t]</strong>.</p>
+<p>Here's the first two measures:</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/30-measure-1-and-2.png" alt="Measures 1 and 2"></p>
+<p>For the next measure, <strong>Measure 3</strong>, we'll start by adding a quarter-note rest with <strong>[5]</strong> and <strong>[0]</strong>. After that, add a quarter-note stack of these notes: B♭, D, and G by typing <strong>[5]</strong> (if neccessary), then <strong>[b]</strong>, <strong>[shift]</strong> + <strong>[d]</strong>, and <strong>[shift]</strong> + <strong>[g]</strong>. Next, add another quarter-note rest with <strong>[5]</strong> and <strong>[0]</strong>. To end the third measure, add a quarter-note stack of these notes: G, B♭, and D by typing <strong>[5]</strong>, <strong>[g]</strong>, <strong>[shift]</strong> + <strong>[b]</strong>, and <strong>[shift]</strong> + <strong>[d]</strong>.</p>
+<p>Here's how the third measure should look at this point:</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/31-measure-3.png" alt="Measure 3"></p>
+<p>Let's finish up the treble clef of the <strong>Piano</strong> instrument by entering notes into <strong>Measure 4</strong>. Start by adding a quarter-note stack of these notes: G, B♭, and E♭ with <strong>[5]</strong>, <strong>[g]</strong>, <strong>[shift]</strong> + <strong>[b]</strong>, and <strong>[shift]</strong> + <strong>[e]</strong>. Next, add an eighth-note rest with <strong>[4]</strong> and <strong>[0]</strong>. After that, add an eighth-note stack of these notes: B♭, E♭, and G by typing <strong>[4]</strong>, <strong>[b]</strong>, <strong>[shift]</strong> + <strong>[e]</strong>, and <strong>[shift]</strong> + <strong>[e]</strong>. For the next note, we'll add a quarter-note length tie by typing <strong>[5]</strong> and then <strong>[t]</strong>. To end the fourth measure, add a quarter-note stack of these notes: G, B♭, and E♭ by typing <strong>[5]</strong>, <strong>[g]</strong>, <strong>[shift]</strong> + <strong>[b]</strong>, and <strong>[shift]</strong> + <strong>[e]</strong>.</p>
+<p>Here are the first four measures of the treble clef:</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/32-measures-1-to-4.png" alt="Measures 1-4"></p>
+<p>See if you can add the rest yourself! Feel free to check out the <a href="#keyboard-shortcuts">keyboard shortcuts</a> and the <a href="#note-input-shortcuts">note input shortcuts</a> found at the bottom of this document.</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/33-all-notes.png" alt="All Notes"></p>
+<p>Now we're all finished adding the notes for our song. Next, we'll get into adding dynamics, articulation, pedals, and breaths.</p>
+<h2 id="4-dynamics-and-articulation">4. Dynamics and articulation</h2>
+<p>Let's start by adding some dynamics to our score.</p>
+<h3 id="dynamics">Dynamics</h3>
+<p>We'll begin by clicking any note in the first measure of the treble clef for the <strong>Piano</strong> instrument. Once it's selected, click <strong>Palettes</strong> on the left side of the screen and under <strong>Dynamics</strong>, click the <strong>p</strong> icon.</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/34-dynamics.png" alt="Dynamics Menu"></p>
+<p>Here's how it should look on your music sheet (notice the small &quot;p&quot; underneath the <strong>Piano</strong> instrument's measure):</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/35-add-dynamics.png" alt="Add Dynamics"></p>
+<p>The next dynamic we're going to add is under the first note in the third measure of the <strong>Piano</strong> instrument's treble clef. This time, instead of adding the <strong>p</strong>, we're going to add an <strong>f</strong>. After that, click anywhere in the third measure of the treble clef of the <strong>Piano</strong> instrument that isn't a note, this will select the whole measure.</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/36-f-select-measure.png" alt="F Select Measure"></p>
+<p>Next, under the <strong>Dynamics</strong> dropdown in the <strong>Palettes</strong> on the left, click the icon that looks like a long arrow with the point on the right <strong>&gt;</strong>. And, after clicking the first note of the fourth measure in the <strong>Piano</strong> instrument's treble clef, click the <strong>mp</strong> icon under <strong>Dynamics</strong>.</p>
+<p>Measures 3 and 4 should look like this now:</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/37-measures-3-4.png" alt="Measures 3 and 4"></p>
+<p>Next, add another <strong>p</strong> to the <strong>Piano</strong> instrument's treble clef on <strong>Measure 9</strong>, and an <strong>mp</strong> dynamic to the <strong>Piano</strong> instrument's treble clef on <strong>Measure 14</strong>. That's all we're going to add for dynamics, your sheet should look like this now:</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/38-all-dynamics.png" alt="All Dynamics"></p>
+<h3 id="articulation">Articulation</h3>
+<p>Let's add articulation to some of the notes in our sheet next. We're going to add staccato to the first two notes of the <strong>Piano</strong>'s bass clef on <strong>Measure 4</strong>. First, click the low E♭ of the first note in the measure, then, holding <strong>[shift]</strong>, click the next low E♭ of the second note in the measure. After that, you can either use the keyboard shortcut <strong>[shift]</strong> + <strong>[s]</strong> to add staccato to the note, or click the dot icon above the sheet music (probably under the button labeled &quot;Parts&quot;).</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/39-staccato-button.png" alt="Staccato Button"></p>
+<p>You'll see the staccato articulation underneath the notes, like this:</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/40-add-staccato.png" alt="Add Staccato"></p>
+<p>Next, do the same thing for the E♭ notes on <strong>Measure 7</strong>. It should look like this:</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/41-add-staccato-2.png" alt="Add Staccato 2"></p>
+<p>To finish with our articulation section, we're going to add the staccato articulation to every note on the <strong>Piano</strong> instrument's treble and bass clefs from <strong>Measure 9</strong> to <strong>Measure 13</strong>. An easy way to do this is to click anywhere in the treble clef on <strong>Measure 9</strong> that isn't a note (which selects the measure) and then, holding <strong>[shift]</strong>, click anywhere in the bass clef measure on <strong>Measure 13</strong> that isn't a note. This will select all of the <strong>Piano</strong> instrument's measures from 9 to 13. Then add the staccato. Now your sheed will look like this:</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/42-all-staccato.png" alt="All Staccato"></p>
+<h2 id="5-keyboard-pedals-breaths-and-arpeggios">5. Keyboard pedals, breaths, and arpeggios</h2>
+<h3 id="keyboard-pedal">Keyboard pedal</h3>
+<p>In the final section of the sheet music creation, let's add some <strong>keyboard pedal</strong> marks to the <strong>Piano</strong> instrument's treble and bass clef from <strong>Measure 13</strong> to <strong>Measure 14</strong>. To do this, following the example above, click anywhere in the <strong>Piano</strong> instrument's treble clef that isn't a note on <strong>Measure 13</strong>, then anywhere in the <strong>Piano</strong> instrument's bass clef that isn't a note on <strong>Measure 14</strong>. Now that we have the measures selected, under <strong>Palettes</strong> on the left, expand the <strong>Keyboard</strong> section. We're going to use the first one, it looks like <strong>Led</strong> with an asterisk looking symbol next to it:</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/43-pedal-button.png" alt="Pedal Button"></p>
+<p>If you click that button, it'll add pedal marks under both clefs of the piano part, which should look like this:</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/44-add-pedal.png" alt="Add Pedal"></p>
+<h3 id="breath">Breath</h3>
+<p>Next, let's add a <strong>fermata</strong> to both instrument's clefs in the final measure, <strong>Measure 16</strong>. First click anywhere on the <strong>Lead</strong> instrument's last measure, then, holding <strong>[shift]</strong>, click anywhere in the bass clef of the <strong>Piano</strong> instrument's last measure. After selecting, expand the <strong>Breaths &amp; Pauses</strong> dropdown in the <strong>Palettes</strong> on the left (click <strong>Add palettes</strong> if you don't see it) and click the first icon:</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/45-fermata-button.png" alt="Fermata Button"></p>
+<p>After clicking the button, you'll see the marks over and under the notes in your sheet:</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/46-fermata.png" alt="Fermata"></p>
+<h3 id="arpeggios">Arpeggios</h3>
+<p>Now, for our final step, let's add some <strong>arpeggios</strong> to some of the chords played in the <strong>Piano</strong> instrument. Make sure to click <strong>Add palettes</strong> in the <strong>Palettes</strong> on the left if you don't see <strong>Arpeggios &amp; glissandros</strong>. After adding it, expand it and you'll see some wavy icons. We're going to be using the first one:</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/47-arpeggio-button.png" alt="Arpeggio Button"></p>
+<p>Let's first add an arpeggio to <strong>Piano</strong> instrument's treble clef notes on <strong>Measure 8</strong>. First, select the measure by clicking anywhere in the treble clef that isn't a note, then click the arpeggio button. You should see an arpeggio mark next to the notes. Then click any note in the first note in the <strong>Piano</strong> instrument's bass clef and do the same. You should see an arpeggio mark next to the whole-note on the treble clef and an arpeggio next to the half-note on the bass clef:</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/48-arpeggio-1.png" alt="Arpeggio 1"></p>
+<p>The only other arpeggio we'll add will be for every clef for every instrument on the final measure. In the same way that we selected the final measures for the fermata, click anywhere in the <strong>Lead</strong> instrument's final measure, then holding <strong>[shift]</strong> and click anywhere in the final measure of the <strong>Piano</strong> instrument's bass clef. With them selected, just click the arpeggio button again:</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/49-arpeggio-2.png" alt="Arpeggio 2"></p>
+<p>And that's it!</p>
+<h2 id="6-finishing-up-and-exporting">6. Finishing up and exporting</h2>
+<p>If you've made it this far, you've successfully created sheet music using <strong>MuseScore</strong>! Great job! Your final sheet music should look like this:</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/50-final-sheet.png" alt="Final Sheet"></p>
+<p>Let's quickly look at the different ways we can export our sheet music.</p>
+<h3 id="exporting">Exporting</h3>
+<p>Before we go further, save your sheet music with <strong>[ctrl]</strong>/<strong>[cmd]</strong> + <strong>[s]</strong> or by going to <strong>File</strong> in the menu bar and clicking <strong>Save</strong>.</p>
+<p>After saving, click <strong>File</strong> in the menu bar and then click <strong>Export</strong> (alternatively, you can use the shortcut <strong>[ctrl]</strong>/<strong>[cmd]</strong> + <strong>[shift]</strong> + <strong>[e]</strong>). Under <strong>Format</strong>, you can choose between the different export options available.</p>
+<p><img src="file:///Users/christopherwright/GitHub Repositories/musescore-program-2025/guide/51-export-options.png" alt="Export Options"></p>
+<p>You can export the sheet music as a <strong>PDF file</strong>, which comes in handy for sharing online or printing, and you can export as a few different audio options, most commonly-used being the <strong>MP3 audio</strong>.</p>
+<p>After exporting, you can do what you need with the files!</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>I hope you've learned a lot about creating sheet music using <strong>MuseScore</strong>! There are many other things that you can do with the software, so please experiment with it and have fun. A great way to keep learning how to use the software is to copy existing music sheets to figure out where all the buttons are. You can check out links in the <a href="#sheet-music-reference">Sheet Music Reference</a> section below.</p>
+<p>Thanks so much for taking the time to learn with me today!</p>
+<h2 id="references">References</h2>
+<h3 id="keyboard-shortcuts">Keyboard shortcuts</h3>
+<table>
+<thead>
+<tr>
+<th>Shortcut</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>[ctrl]</strong>/<strong>[cmd]</strong> + <strong>[k]</strong></td>
+<td>Insert chord</td>
+</tr>
+<tr>
+<td><strong>[n]</strong></td>
+<td>Toggle Note input mode</td>
+</tr>
+<tr>
+<td><strong>[shift]</strong> + <strong>[s]</strong></td>
+<td>Staccato</td>
+</tr>
+<tr>
+<td><strong>[ctrl]</strong>/<strong>[cmd]</strong> + <strong>[s]</strong></td>
+<td>Save</td>
+</tr>
+<tr>
+<td><strong>[ctrl]</strong>/<strong>[cmd]</strong> + <strong>[shift]</strong> + <strong>[e]</strong></td>
+<td>Export</td>
+</tr>
+</tbody>
+</table>
+<h3 id="note-input-shortcuts">Note input shortcuts</h3>
+<table>
+<thead>
+<tr>
+<th>Shortcut</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>[7]</strong></td>
+<td>Whole-Note</td>
+</tr>
+<tr>
+<td><strong>[6]</strong></td>
+<td>Half-Note</td>
+</tr>
+<tr>
+<td><strong>[5]</strong></td>
+<td>Quarter-Note</td>
+</tr>
+<tr>
+<td><strong>[4]</strong></td>
+<td>Eighth-Note</td>
+</tr>
+<tr>
+<td><strong>[3]</strong></td>
+<td>16th-Note</td>
+</tr>
+<tr>
+<td><strong>[2]</strong></td>
+<td>32nd-Note</td>
+</tr>
+<tr>
+<td><strong>[1]</strong></td>
+<td>64th-Note</td>
+</tr>
+<tr>
+<td><strong>[.]</strong></td>
+<td>Dotted-Note</td>
+</tr>
+<tr>
+<td><strong>[a]</strong> - <strong>[g]</strong></td>
+<td>Insert A, B, C, D, E, F, or G Note</td>
+</tr>
+<tr>
+<td><strong>[0]</strong></td>
+<td>Insert Rest</td>
+</tr>
+<tr>
+<td><strong>[ctrl]</strong>/<strong>[cmd]</strong> + <strong>[3]</strong></td>
+<td>Insert triplet</td>
+</tr>
+<tr>
+<td><strong>[t]</strong></td>
+<td>Tie Notes</td>
+</tr>
+<tr>
+<td><strong>[+}</strong></td>
+<td>Sharp Note</td>
+</tr>
+<tr>
+<td><strong>[-]</strong></td>
+<td>Flat Note</td>
+</tr>
+<tr>
+<td><strong>[=]</strong></td>
+<td>Natural Note</td>
+</tr>
+<tr>
+<td><strong>[up arrow]</strong></td>
+<td>Move note up one semitone</td>
+</tr>
+<tr>
+<td><strong>[down arrow]</strong></td>
+<td>Move note down one semitone</td>
+</tr>
+<tr>
+<td><strong>[ctrl]</strong>/<strong>[cmd]</strong> + <strong>[up arrow]</strong></td>
+<td>Move note up an octave</td>
+</tr>
+<tr>
+<td><strong>[ctrl]</strong>/<strong>[cmd]</strong> + <strong>[down arrow]</strong></td>
+<td>Move note down an octave</td>
+</tr>
+<tr>
+<td><strong>[s]</strong></td>
+<td>Slur Note</td>
+</tr>
+<tr>
+<td><strong>[shift]</strong> + <strong>[note]</strong></td>
+<td>Add another note to current</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sheet-music-reference">Sheet music reference</h3>
+<ul>
+<li><a href="https://clara.imslp.org/">Clara IMSLP</a>
+<ul>
+<li>Many completely free scans of classical sheet music from nearly every classical composer in history. Probably the best resource available with a massive catalog.</li>
+</ul>
+</li>
+<li><a href="https://www.freesheetmusic.net/music">Free Sheet Music</a>
+<ul>
+<li>Similar to <strong>Clara IMSLP</strong> and also completely free.</li>
+</ul>
+</li>
+<li><a href="https://www.ninsheetmusic.org/">Nintendo Sheet Music</a>
+<ul>
+<li>Free sheet music from many video games, mostly transcribed by fans of the games. They're all rated as well, so you can see which ones may sound best.</li>
+</ul>
+</li>
+</ul>
+
+</body>
+</html>
