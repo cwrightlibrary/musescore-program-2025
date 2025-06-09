@@ -64,11 +64,13 @@ Let's get started!
 
 First, visit the [releases page from the MuseScore GitHub repository](https://github.com/musescore/MuseScore/releases/tag/v4.4.4) and, under Assets, download the file that corresponds with your operating system.
 
-> For example, if you're running 64-bit Windows 10 or 11, download the file named `MuseScore-Studio-4.4.4.243461245-x86_64.msi`. If you don't have administrator privaleges on your computer, download `MuseScore-Studio-4.4.4.243461245-x86_64.paf.exe`.
+> For example, if you're running 64-bit Windows 10 or 11, download the file named **`MuseScore-Studio-4.4.4.243461245-x86_64.msi`**.
+> 
+> If you don't have administrator privaleges on your computer, download **`MuseScore-Studio-4.4.4.243461245-x86_64.paf.exe`**.
 >
-> If you're on a Mac computer, download `MuseScore-Studio-4.4.4.243461245.dmg`.
+> If you're on a Mac computer, download **`MuseScore-Studio-4.4.4.243461245.dmg`**.
 
-Once you've downloaded the file, just install it (or drag the app to `/Applications` on Mac) and you're all set!
+Once you've downloaded the file, just run the installer or drag the app to `/Applications` on Mac and you're all set!
 
 ## 1. Score properties
 
