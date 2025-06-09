@@ -2,7 +2,7 @@
 
 ## Installation
 
-Go to the musescore site or their GitHub Repo and download the one for your system (the `.paf` file is if you have windows with no admin privaleges).
+Go to the musescore site or their GitHub Repo and download the one for your system (the `.paf` file is if you have windows with no admin privileges).
 
 Run the installer or drag the app to `/Applications` on macOS.
 
